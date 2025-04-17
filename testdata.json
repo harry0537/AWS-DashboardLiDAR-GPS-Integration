@@ -1,0 +1,17 @@
+{
+    "ugv": {
+      "telemetry": {
+        "battery": 87,
+        "current_task": "Surveying",
+        "gps": {
+          "accuracy": 0.5,
+          "lat": -36.848461,
+          "lon": 174.763336
+        },
+        "heading": 45,
+        "speed": 5.2,
+        "timestamp": 1713323280
+      }
+    }
+  }
+  

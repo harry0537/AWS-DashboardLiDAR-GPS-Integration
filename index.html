@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <!-- Add Firebase Realtime Database SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // Redirect to login if not authenticated
+  if (!sessionStorage.getItem('authenticated')) {
+    window.location.href = 'login.html';
+  }
+</script>
+
+</head>
+<body>
+  <div class="dashboard">
+    <header>
+      <span class="icon">🚀</span>
+      <span class="title">DASHBOARD</span>
+    </header>
+    <main>
+      <section class="map-section">
+        <div id="map" style="width: 100%; height: 400px; border-radius: 8px;"></div>
+      </section>      
+      <aside>
+        <div class="tools">
+          <h3>Map Tools</h3>
+          <button>+</button>
+          <button>🗺️</button>
+        </div>
+        <div class="controls">
+          <h3>Rover Controls</h3>
+          <button>Manual Control</button>
+          <button>Waypoint Nav</button>
+        </div>
+        <div class="rover-icon">
+          <span>🛸</span>
+        </div>
+      </aside>
+    </main>
+    <footer>
+      <div class="info-box">
+        <span>Speed</span>
+        <span id="speed">5,2 km/h</span>
+      </div>
+      <div class="info-box">
+        <span>Battery</span>
+        <span id="battery">87%</span>
+      </div>
+      <div class="info-box">
+        <span>GPS Accuracy</span>
+        <span id="gps">0,5 m</span>
+      </div>
+      <div class="info-box">
+        <span>Current Task</span>
+        <span id="task">Surveying</span>
+      </div>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
