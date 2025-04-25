@@ -27,34 +27,36 @@
       <span class="title">DASHBOARD</span>
     </header>
     <main>
-      <section class="map-section">
-        <div id="map"></div>
+      <div class="row">
+        <section class="map-section">
+          <div id="map"></div>
+        </section>
+        <aside>
+          <div class="tools">
+            <h3>Map Tools</h3>
+            <button>+</button>
+            <button>🗺️</button>
+            <button>🔍 Zoom In</button>
+            <button>🔎 Zoom Out</button>
+            <button>📍 Add Marker</button>
+            <button>🧭 Reset View</button>
+            <button>🌍 Satellite View</button>
+            <button>🗺️ Terrain View</button>
+          </div>
+          <div class="controls">
+            <h3>Rover Controls</h3>
+            <button>Manual Control</button>
+            <button>Waypoint Nav</button>
+            <button>Arm/Disarm</button>
+            <button>Capture Image</button>
+            <button>Start Video Stream</button>
+          </div>
+        </aside>
+      </div>
+      <section class="video-stream-section">
+        <h3>Video Stream</h3>
+        <div class="video-placeholder">Loading video stream...</div>
       </section>
-      <aside>
-        <div class="tools">
-          <h3>Map Tools</h3>
-          <button>+</button>
-          <button>🗺️</button>
-          <button>🔍 Zoom In</button>
-          <button>🔎 Zoom Out</button>
-          <button>📍 Add Marker</button>
-          <button>🧭 Reset View</button>
-          <button>🌍 Satellite View</button>
-          <button>🗺️ Terrain View</button>
-        </div>
-        <div class="controls">
-          <h3>Rover Controls</h3>
-          <button>Manual Control</button>
-          <button>Waypoint Nav</button>
-          <button>Arm/Disarm</button>
-          <button>Capture Image</button>
-          <button>Start Video Stream</button>
-        </div>
-        <div class="video-stream">
-          <h3>Video Stream</h3>
-          <div class="video-placeholder">Video Stream Placeholder</div>
-        </div>
-      </aside>
     </main>
     <footer>
       <div class="info-box">
@@ -63,15 +65,15 @@
       </div>
       <div class="info-box">
         <span>Battery</span>
-        <span id="battery">87%</span>
+        <span id="battery">100%</span>
       </div>
       <div class="info-box">
         <span>GPS Accuracy</span>
-        <span id="gps">0.5 m</span>
+        <span id="gps">2.0 m</span>
       </div>
       <div class="info-box">
         <span>Mode</span>
-        <span id="task">Mannual</span>
+        <span id="task">Idle</span>
       </div>
     </footer>
   </div>
