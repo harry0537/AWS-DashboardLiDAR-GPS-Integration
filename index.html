@@ -9,17 +9,16 @@
   <!-- Add Firebase Realtime Database SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
-  // Redirect to login if not authenticated
-  if (!sessionStorage.getItem('authenticated')) {
-    window.location.href = 'login.html';
-  }
-</script>
-
+  <script>
+    // Redirect to login if not authenticated
+    if (!sessionStorage.getItem('authenticated')) {
+      window.location.href = 'login.html';
+    }
+  </script>
 </head>
 <body>
   <div class="dashboard">
@@ -29,28 +28,38 @@
     </header>
     <main>
       <section class="map-section">
-        <div id="map" style="width: 100%; height: 400px; border-radius: 8px;"></div>
-      </section>      
+        <div id="map"></div>
+      </section>
       <aside>
         <div class="tools">
           <h3>Map Tools</h3>
           <button>+</button>
           <button>🗺️</button>
+          <button>🔍 Zoom In</button>
+          <button>🔎 Zoom Out</button>
+          <button>📍 Add Marker</button>
+          <button>🧭 Reset View</button>
+          <button>🌍 Satellite View</button>
+          <button>🗺️ Terrain View</button>
         </div>
         <div class="controls">
           <h3>Rover Controls</h3>
           <button>Manual Control</button>
           <button>Waypoint Nav</button>
+          <button>Arm/Disarm</button>
+          <button>Capture Image</button>
+          <button>Start Video Stream</button>
         </div>
-        <div class="rover-icon">
-          <span>🛸</span>
+        <div class="video-stream">
+          <h3>Video Stream</h3>
+          <div class="video-placeholder">Video Stream Placeholder</div>
         </div>
       </aside>
     </main>
     <footer>
       <div class="info-box">
         <span>Speed</span>
-        <span id="speed">5,2 km/h</span>
+        <span id="speed">5.2 km/h</span>
       </div>
       <div class="info-box">
         <span>Battery</span>
@@ -58,11 +67,11 @@
       </div>
       <div class="info-box">
         <span>GPS Accuracy</span>
-        <span id="gps">0,5 m</span>
+        <span id="gps">0.5 m</span>
       </div>
       <div class="info-box">
-        <span>Current Task</span>
-        <span id="task">Surveying</span>
+        <span>Mode</span>
+        <span id="task">Mannual</span>
       </div>
     </footer>
   </div>

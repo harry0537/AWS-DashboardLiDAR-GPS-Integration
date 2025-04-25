@@ -4,66 +4,73 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-  }
-  
-  .dashboard {
-    max-width: 1000px;
-    margin: 40px auto;
+    height: 100vh; /* Full height */
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    display: flex;
+    flex-direction: column;
     background: #2e3338;
-    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
-  }
-  
-  header {
+}
+
+header {
     display: flex;
     align-items: center;
     padding: 20px;
     background: #23272c;
     font-size: 2rem;
-    border-bottom: 1px solid #444;
-  }
-  
-  .icon {
+    flex-shrink: 0;
+}
+
+.icon {
     margin-right: 16px;
-  }
-  
-  main {
+}
+
+main {
     display: flex;
+    flex: 1; /* Take up remaining space */
     padding: 20px;
     gap: 24px;
-  }
-  
-  .map-section {
-    flex: 2;
-  }
-  
-  .map-img {
+    overflow: auto; /* Allow scrolling for smaller screens */
+}
+
+.map-section {
+    flex: 5; /* Larger map section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#map {
     width: 100%;
+    height: 100%;
     border-radius: 8px;
-    border: 1px solid #444;
-  }
-  
-  aside {
-    flex: 1;
+}
+
+aside {
+    flex: 3;
     display: flex;
     flex-direction: column;
     gap: 24px;
-  }
-  
-  .tools, .controls {
+}
+
+.tools, .controls, .video-stream {
     background: #23272c;
     padding: 16px;
     border-radius: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .tools h3, .controls h3 {
+}
+
+.tools h3, .controls h3, .video-stream h3 {
     margin: 0 0 12px 0;
     font-size: 1.1rem;
-  }
-  
-  .tools button, .controls button {
+}
+
+.tools button, .controls button {
     margin-right: 8px;
     margin-bottom: 8px;
     background: #444;
@@ -73,45 +80,48 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-size: 1rem;
-  }
-  
-  .rover-icon {
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 300px;
+    background: #444;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
-    background: #23272c;
-    border-radius: 8px;
-    height: 60px;
-  }
-  
-  footer {
+    color: #e5e7ea;
+    font-size: 1rem;
+}
+
+footer {
     display: flex;
     justify-content: space-between;
+    padding: 20px;
     background: #23272c;
-    padding: 18px 20px;
-    border-top: 1px solid #444;
-  }
-  
-  .info-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 120px;
-  }
-  
-  .info-box span:first-child {
+    flex-shrink: 0;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.info-box {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    min-width: 150px; /* Ensure boxes don't shrink too much */
+}
+
+.info-box span:first-child {
     color: #b0b3b8;
     font-size: 0.9rem;
-  }
-  
-  .info-box span:last-child {
+}
+
+.info-box span:last-child {
     font-size: 1.3rem;
     font-weight: bold;
     margin-top: 4px;
-  }
+}
 
-  .login-container {
+.login-container {
     max-width: 400px;
     margin: 100px auto;
     padding: 20px;
@@ -119,20 +129,20 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
     text-align: center;
-  }
-  
-  .login-container h1 {
+}
+
+.login-container h1 {
     margin-bottom: 20px;
     color: #e5e7ea;
-  }
-  
-  .login-container label {
+}
+
+.login-container label {
     display: block;
     margin: 10px 0 5px;
     color: #b0b3b8;
-  }
-  
-  .login-container input {
+}
+
+.login-container input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -140,9 +150,9 @@ body {
     border-radius: 6px;
     background: #23272c;
     color: #e5e7ea;
-  }
-  
-  .login-container button {
+}
+
+.login-container button {
     width: 100%;
     padding: 10px;
     background: #444;
@@ -151,10 +161,10 @@ body {
     font-size: 1rem;
     border-radius: 6px;
     cursor: pointer;
-  }
-  
-  .error-message {
+}
+
+.error-message {
     color: #ff4d4d;
     font-size: 0.9rem;
     margin-top: -10px;
-  }
+}
