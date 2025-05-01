@@ -106,6 +106,7 @@ button {
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  flex: 1 1 calc(50% - 10px); /* Make buttons take 50% width with spacing */
 }
 
 button:hover {
@@ -115,6 +116,28 @@ button:hover {
 
 button:active {
   transform: translateY(0);
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .tool-buttons, .control-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 8px;
+  }
+
+  button {
+    flex: 1 1 100%; /* Make buttons take full width */
+    font-size: 0.9rem; /* Slightly smaller font size */
+    padding: 8px 12px; /* Adjust padding for smaller screens */
+  }
+
+  .tools, .controls {
+    padding: 12px; /* Reduce padding for smaller screens */
+  }
+
+  .tools h3, .controls h3 {
+    font-size: 1rem; /* Adjust heading size */
+  }
 }
 
 /* Video Stream Section */
