@@ -72,33 +72,49 @@ aside {
   gap: 24px;
 }
 
+/* Map Tools and Rover Controls */
 .tools, .controls {
-  background: #3a3d4d;
+  background: #2b2d42;
   padding: 16px;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
 .tools h3, .controls h3 {
-  margin: 0 0 12px 0;
+  margin-bottom: 16px;
   font-size: 1.2rem;
   color: #ffffff;
 }
 
+.tool-buttons, .control-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 button {
-  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 14px;
-  background: #444;
+  background: #3a3d4d;
   border: none;
   color: #e5e7ea;
   font-size: 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-  background: #555;
+  background: #444;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 /* Video Stream Section */
