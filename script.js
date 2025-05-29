@@ -1,6 +1,6 @@
 async function fetchTelemetry() {
   try {
-    const response = await fetch('http://96.0.77.42:5000/api/telemetry'); // Replace <EC2-IP> with your EC2 IP
+    const response = await fetch('http://96.0.77.42:5000/api/telemetry');
     const data = await response.json();
 
     if (!data || data.length === 0) {
