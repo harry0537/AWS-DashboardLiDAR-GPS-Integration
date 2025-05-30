@@ -48,3 +48,26 @@ function updateMapPosition(lat, lon, heading) {
 
 fetchTelemetry();
 setInterval(fetchTelemetry, 2000);
+
+
+async function startRealSenseStream() {
+  const video = document.getElementById('realsenseStream');
+  const pc = new RTCPeerConnection();
+
+  pc.ontrack = (event) => {
+    video.srcObject = event.streams[0];
+  };
+
+  const offer = await pc.createOffer();
+  await pc.setLocalDescription(offer);
+
+  const response = await fetch('http://10.244.51.157:8080/offer', {
+    method: 'POST',
+    body: JSON.stringify(pc.localDescription),
+    headers: { 'Content-Type': 'application/json' }
+  });
+  const answer = await response.json();
+  await pc.setRemoteDescription(answer);
+}
+
+startRealSenseStream();
