@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  api:
+    build: .
+    container_name: ugv_api
+    env_file: .env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - ddb
+
+  ddb:
+    image: amazon/dynamodb-local:2.5.2
+    container_name: ddb_local
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data
+    volumes:
+      - ./_ddbdata:/home/dynamodblocal/data
+    ports:
+      - "8000:8000"
+
+  # Uncomment if you want nginx in front later
+  # nginx:
+  #   image: nginx:1.27
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - api 
