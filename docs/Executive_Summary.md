@@ -42,3 +42,5 @@ Team Omega is enhancing an autonomous vehicle prototype for orchard environments
 ## References
 - ArduSimple simpleRTK2B: [simpleRTK2B Budget](https://www.ardusimple.com/product/simplertk2b/)
 - SLAMTEC RPLIDAR SDK: `https://github.com/slamtec/rplidar_sdk` 
+<!-- trigger build -->
+
