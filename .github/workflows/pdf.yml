@@ -1,0 +1,33 @@
+name: Build PDF Docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/Executive_Summary.md'
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '3.1.11'
+
+      - name: Build Executive_Summary.pdf
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra
+          mkdir -p build
+          pandoc docs/Executive_Summary.md -o build/Executive_Summary.pdf --from gfm --pdf-engine=xelatex
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Executive_Summary_PDF
+          path: build/Executive_Summary.pdf 
