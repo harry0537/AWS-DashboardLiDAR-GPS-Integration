@@ -1,18 +1,16 @@
 async function fetchTelemetry() {
-  try {
-    const response = await fetch('http://96.0.77.42:5000/api/telemetry');
+    try {
+    const response = await fetch(`${window.APP_CONFIG.API_BASE_URL}/api/telemetry/latest`);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
 
-    if (!data || data.length === 0) {
+    if (!data || Object.keys(data).length === 0) {
       console.warn("No telemetry data received");
       return;
     }
 
-    // Find latest by timestamp
-    const latest = data.reduce((a, b) => (a.timestamp > b.timestamp ? a : b));
-
     // Update dashboard
-    updateDashboard(latest);
+    updateDashboard(data);
   } catch (error) {
     console.error("Error fetching telemetry:", error);
   }
@@ -21,7 +19,8 @@ async function fetchTelemetry() {
 function updateDashboard(data) {
   document.getElementById('speed').textContent = `${parseFloat(data.speed || 0).toFixed(2)} km/h`;
   document.getElementById('battery').textContent = `${data.battery_remaining || 'N/A'}%`;
-  document.getElementById('gps').textContent = `N/A`;
+  const hdop = data.gps_accuracy_hdop;
+  document.getElementById('gps').textContent = (hdop !== undefined && hdop !== null) ? `${hdop} HDOP` : 'N/A';
   document.getElementById('task').textContent = `Idle`;
 
   if (data.lat && data.lon && data.lat !== "0" && data.lon !== "0") {
@@ -61,7 +60,7 @@ async function startRealSenseStream() {
   const offer = await pc.createOffer();
   await pc.setLocalDescription(offer);
 
-  const response = await fetch('http://10.244.51.157:8080/offer', {
+  const response = await fetch(window.APP_CONFIG.WEBRTC_OFFER_URL, {
     method: 'POST',
     body: JSON.stringify(pc.localDescription),
     headers: { 'Content-Type': 'application/json' }
