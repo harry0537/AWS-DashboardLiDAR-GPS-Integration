@@ -1,0 +1,28 @@
+[Unit]
+Description=Team Omega MAVProxy Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=astra
+Group=astra
+WorkingDirectory=/opt/astra/companion
+Environment=PATH=/opt/astra/venv/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PYTHONPATH=/opt/astra/companion
+ExecStart=/opt/astra/venv/bin/python -m companion.mav.mavproxy_launcher
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mavproxy
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/astra /opt/astra/data
+
+[Install]
+WantedBy=multi-user.target

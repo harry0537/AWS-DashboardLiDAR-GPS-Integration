@@ -1,0 +1,39 @@
+# Team Omega - Companion Requirements
+# Python dependencies for NUC companion computer
+
+# Core dependencies
+pyserial>=3.5
+pymavlink>=2.4.37
+pymavlink[mavgen]>=2.4.37
+numpy>=1.21.0
+structlog>=21.1.0
+
+# RPLIDAR support
+rplidar-roboticia>=1.0.0
+
+# Camera and image processing
+opencv-python>=4.5.0
+Pillow>=8.3.0
+
+# MAVLink and communication
+pymavlink>=2.4.37
+pymavlink[mavgen]>=2.4.37
+
+# AWS and cloud integration
+boto3>=1.26.0
+botocore>=1.29.0
+
+# System utilities
+psutil>=5.8.0
+pyyaml>=6.0
+
+# Development dependencies (optional)
+pytest>=6.2.5
+pytest-asyncio>=0.15.1
+black>=22.3.0
+flake8>=4.0.1
+mypy>=0.950
+
+# Hardware specific
+smbus2>=0.4.2  # For I2C sensors
+RPi.GPIO>=0.7.1  # For Raspberry Pi GPIO (if applicable)

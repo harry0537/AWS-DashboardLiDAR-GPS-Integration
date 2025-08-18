@@ -1,0 +1,45 @@
+[Unit]
+Description=Team Omega Enhanced Telemetry Uplink Service
+After=network.target mavproxy.service
+Wants=network.target
+PartOf=astra.target
+
+[Service]
+Type=simple
+User=astra
+Group=astra
+WorkingDirectory=/opt/astra/companion
+Environment=PATH=/opt/astra/venv/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PYTHONPATH=/opt/astra/companion
+Environment=EC2_API_URL=http://your-ec2-instance:5000
+Environment=DEVICE_ID=astra-rover-1
+Environment=TELEMETRY_UPLINK_INTERVAL=2.0
+Environment=TELEMETRY_RETRY_ATTEMPTS=3
+Environment=TELEMETRY_RETRY_DELAY=1.0
+
+ExecStart=/opt/astra/venv/bin/python -m companion.telemetry.ec2_uplink
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=enhanced-telemetry
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/astra
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target
+Also=astra.target

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>AWS Dashboard - EC2 Integration</title>
   <link rel="stylesheet" href="styles.css">
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -20,7 +20,8 @@
   <div class="dashboard">
     <header>
       <span class="icon">🚀</span>
-      <span class="title">DASHBOARD</span>
+      <span class="title">AWS DASHBOARD - EC2 Integration</span>
+      <span class="subtitle">Connected to Existing Infrastructure</span>
     </header>
     <main>
       <div class="row">
@@ -52,29 +53,52 @@
           </div>
         </aside>
       </div>
+      
+      <!-- Sensor Data Section -->
+      <section class="sensor-data-section">
+        <h3>Sensor Status & Data</h3>
+        <div class="sensor-grid">
+          <div class="sensor-card" id="lidar-info">
+            <h4>LiDAR Object Detection</h4>
+            <p>Connecting to RPLIDAR...</p>
+          </div>
+          <div class="sensor-card" id="ultrasonic-info">
+            <h4>Ultrasonic Sensor</h4>
+            <p>Connecting to Maxbotix I2C EZ4...</p>
+          </div>
+          <div class="sensor-card" id="battery-info">
+            <h4>Battery Status</h4>
+            <p>Connecting to Pixhawk...</p>
+          </div>
+          <div class="sensor-card" id="gps-info">
+            <h4>GPS Status</h4>
+            <p>Connecting to simpleRTK2B...</p>
+          </div>
+        </div>
+      </section>
+      
       <section class="video-stream-section">
         <h3>Video Stream</h3>
         <div class="video-placeholder">Loading video stream...</div>
         <video id="realsenseStream" autoplay playsinline muted width="640" height="480"></video>
-
       </section>
     </main>
     <footer>
       <div class="info-box">
         <span>Speed</span>
-        <span id="speed">5.2 km/h</span>
+        <span id="speed">-- km/h</span>
       </div>
       <div class="info-box">
         <span>Battery</span>
-        <span id="battery">100%</span>
+        <span id="battery">-- V</span>
       </div>
       <div class="info-box">
         <span>GPS Accuracy</span>
-        <span id="gps">2.0 m</span>
+        <span id="gps">-- HDOP</span>
       </div>
       <div class="info-box">
         <span>Mode</span>
-        <span id="task">Idle</span>
+        <span id="task">Connecting...</span>
       </div>
     </footer>
   </div>

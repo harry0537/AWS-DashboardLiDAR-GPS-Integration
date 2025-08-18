@@ -1,0 +1,17 @@
+[Unit]
+Description=Team Omega Project Astra Services
+Documentation=https://github.com/team-omega/project-astra
+Wants=network.target
+
+# Core services
+Wants=mavproxy.service
+Wants=ntrip-client.service
+Wants=enhanced-telemetry.service
+
+# Optional services (can be enabled separately)
+Wants=lidar-driver.service
+Wants=camera-capture.service
+Wants=obstacle-fusion.service
+
+[Install]
+WantedBy=multi-user.target

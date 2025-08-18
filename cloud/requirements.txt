@@ -1,0 +1,60 @@
+# Team Omega - Cloud Requirements
+# Python dependencies for cloud API and services
+
+# Web framework
+Flask>=2.3.0
+Flask-CORS>=4.0.0
+Flask-RESTful>=0.3.9
+
+# Alternative: FastAPI (uncomment if preferred)
+# fastapi>=0.100.0
+# uvicorn[standard]>=0.22.0
+
+# AWS and cloud services
+boto3>=1.26.0
+botocore>=1.29.0
+aioboto3>=11.0.0
+
+# Database
+dynamodb-local>=0.0.25
+psycopg2-binary>=2.9.5  # For PostgreSQL if needed
+
+# Image processing
+Pillow>=8.3.0
+opencv-python>=4.5.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Logging and monitoring
+structlog>=21.1.0
+prometheus-client>=0.16.0
+
+# Configuration and environment
+python-dotenv>=0.19.0
+pyyaml>=6.0
+
+# HTTP and networking
+requests>=2.28.0
+aiohttp>=3.8.0
+
+# Serialization
+marshmallow>=3.19.0
+pydantic>=1.10.0
+
+# Development and testing
+pytest>=6.2.5
+pytest-asyncio>=0.15.1
+pytest-cov>=3.0.0
+black>=22.3.0
+flake8>=4.0.1
+mypy>=0.950
+
+# Security
+cryptography>=3.4.8
+PyJWT>=2.6.0
+
+# Performance
+gunicorn>=20.1.0
+uvloop>=0.17.0  # For FastAPI performance
