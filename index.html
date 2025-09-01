@@ -58,24 +58,29 @@
       <section class="sensor-data-section">
         <h3>Sensor Status & Data</h3>
         <div class="sensor-grid">
-          <div class="sensor-card" id="lidar-info">
-            <h4>LiDAR Object Detection</h4>
-            <p>Connecting to RPLIDAR...</p>
-          </div>
-          <div class="sensor-card" id="ultrasonic-info">
-            <h4>Ultrasonic Sensor</h4>
-            <p>Connecting to Maxbotix I2C EZ4...</p>
-          </div>
-          <div class="sensor-card" id="battery-info">
-            <h4>Battery Status</h4>
-            <p>Connecting to Pixhawk...</p>
-          </div>
-          <div class="sensor-card" id="gps-info">
+          <div id="gps-info" class="sensor-card">
             <h4>GPS Status</h4>
-            <p>Connecting to simpleRTK2B...</p>
+            <p>Loading...</p>
+          </div>
+          <div id="lidar-info" class="sensor-card">
+            <h4>LiDAR Status</h4>
+            <p>Loading...</p>
+          </div>
+          <div id="ultrasonic-info" class="sensor-card">
+            <h4>Ultrasonic Status</h4>
+            <p>Loading...</p>
+          </div>
+          <div id="battery" class="sensor-card">
+            <h4>Battery Status</h4>
+            <p>Loading...</p>
           </div>
         </div>
       </section>
+      
+      <!-- Obstacle Status Indicator -->
+      <div id="obstacle-status" class="obstacle-indicator status-unknown">
+        NO DATA
+      </div>
       
       <section class="video-stream-section">
         <h3>Video Stream</h3>

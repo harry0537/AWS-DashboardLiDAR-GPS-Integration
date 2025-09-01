@@ -71,17 +71,99 @@ function updateDashboard(data) {
 }
 
 function updateLiDARDisplay(lidarData) {
-    // Update LiDAR information in dashboard
+    // Update LiDAR information in dashboard with enhanced obstacle detection
     const lidarInfo = document.getElementById('lidar-info');
-    if (lidarInfo) {
+    if (lidarInfo && lidarData.object_avoidance) {
+        const data = lidarData.object_avoidance;
+        const status = data.status || 'unknown';
+        const statusClass = getStatusClass(status);
+        
+        // Create sector display
+        let sectorsHtml = '';
+        if (data.sectors) {
+            sectorsHtml = '<div class="sectors-grid">';
+            for (const [sectorName, sectorData] of Object.entries(data.sectors)) {
+                const dangerClass = getDangerClass(sectorData.danger_level);
+                sectorsHtml += `
+                    <div class="sector ${dangerClass}">
+                        <h5>${sectorName.toUpperCase()}</h5>
+                        <p>Distance: <strong>${sectorData.closest_cm} cm</strong></p>
+                        <p>Status: <strong>${sectorData.danger_level}</strong></p>
+                    </div>
+                `;
+            }
+            sectorsHtml += '</div>';
+        }
+        
         lidarInfo.innerHTML = `
-            <div class="sensor-data">
-                <h4>LiDAR Object Detection</h4>
-                <p>Closest Object: <strong>${lidarData.closest_distance_cm} cm</strong></p>
-                <p>Distance: <strong>${lidarData.closest_distance_m} m</strong></p>
-                <p>Measurements: <strong>${lidarData.measurement_count}</strong></p>
+            <div class="sensor-data ${statusClass}">
+                <h4>🛡️ LiDAR Obstacle Detection</h4>
+                <div class="lidar-status">
+                    <p>Status: <strong>${status.toUpperCase()}</strong></p>
+                    <p>Closest Object: <strong>${data.closest_distance_cm} cm</strong></p>
+                    <p>Distance: <strong>${data.closest_distance_m} m</strong></p>
+                    <p>Measurements: <strong>${data.measurement_count}</strong></p>
+                    <p>Quality: <strong>${data.quality_avg || 'N/A'}</strong></p>
+                </div>
+                ${sectorsHtml}
             </div>
         `;
+        
+        // Update status indicator
+        updateObstacleStatus(status, data.closest_distance_cm);
+    }
+}
+
+function getStatusClass(status) {
+    switch (status) {
+        case 'critical': return 'status-critical';
+        case 'warning': return 'status-warning';
+        case 'caution': return 'status-caution';
+        case 'clear': return 'status-normal';
+        default: return 'status-unknown';
+    }
+}
+
+function getDangerClass(dangerLevel) {
+    switch (dangerLevel) {
+        case 'high': return 'danger-high';
+        case 'medium': return 'danger-medium';
+        case 'low': return 'danger-low';
+        case 'none': return 'danger-none';
+        default: return 'danger-none';
+    }
+}
+
+function updateObstacleStatus(status, distance) {
+    // Update obstacle status indicator
+    const statusIndicator = document.getElementById('obstacle-status');
+    if (statusIndicator) {
+        const statusClass = getStatusClass(status);
+        statusIndicator.className = `obstacle-indicator ${statusClass}`;
+        statusIndicator.textContent = `${status.toUpperCase()} (${distance}cm)`;
+    }
+    
+    // Show alert for critical situations
+    if (status === 'critical') {
+        showObstacleAlert(distance);
+    }
+}
+
+function showObstacleAlert(distance) {
+    // Display critical obstacle alert
+    const alertDiv = document.createElement('div');
+    alertDiv.className = 'obstacle-alert';
+    alertDiv.innerHTML = `
+        <div class="alert-content">
+            <span class="alert-icon">🚨</span>
+            <span class="alert-text">CRITICAL OBSTACLE: ${distance}cm</span>
+            <button onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+    
+    // Add to page if not already present
+    if (!document.querySelector('.obstacle-alert')) {
+        document.body.appendChild(alertDiv);
     }
 }
 
